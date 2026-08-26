@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">Find Phone By Clap</string>
+    <string name="clap_mode_title">Clap</string>
+    <string name="touch_mode_title">Don\'t Touch</string>
+    <string name="pocket_mode_title">Pocket</string>
+
+    <string name="tap_to_activate">Tap to Activate</string>
+    <string name="tap_to_deactivate">Tap to Deactivate</string>
+    <string name="active">ACTIVE</string>
+    <string name="inactive">INACTIVE</string>
+    <string name="status_clap_active">Listening for clapping &amp; whistle…</string>
+    <string name="status_touch_active">Motion alarm is armed</string>
+    <string name="status_pocket_active">Pocket alarm is armed</string>
+    <string name="status_touch_countdown">Place phone down in %d s…</string>
+    <string name="how_to_use">How to Use</string>
+    <string name="select_sound">Select Sound</string>
+    <string name="more_sounds">More Sounds</string>
+
+    <!-- Sound Names -->
+    <string name="sound_airhorn">Air Horn</string>
+    <string name="sound_cat">Cat Meow</string>
+    <string name="sound_dog">Dog Bark</string>
+    <string name="sound_rooster">Rooster</string>
+    <string name="sound_gun">Gunshot</string>
+    <string name="sound_bomb">Explosion</string>
+    <string name="sound_warning">Police Siren</string>
+    <string name="sound_baby_smile">Baby Laugh</string>
+    <string name="sound_hahaha">Laughter</string>
+    <string name="sound_nokia">Nokia Ringtone</string>
+    <string name="sound_horn_stabs">Horn Stabs</string>
+    <string name="sound_cow">Cow Moo</string>
+    <string name="sound_discord">Notification</string>
+    <string name="sound_happy">Happy Whistle</string>
+    <string name="sound_here">I Am Here</string>
+    <string name="sound_burp">Loud Burp</string>
+    <string name="sound_magic">Magic Chime</string>
+    <string name="sound_oh_no">Oh No</string>
+    <string name="sound_oiia">Oiia Meme</string>
+    <string name="sound_shriek">Scream</string>
+    <string name="sound_snoring">Snoring</string>
+    <string name="sound_ting">Ting Ting Ting</string>
+    <string name="sound_wolf">Wolf Howl</string>
+    <string name="sound_disco">Disco Party</string>
+    <string name="sound_car_horn">Car Alarm</string>
+    <string name="sound_fart">Funny Fart</string>
+    <string name="sound_horror">Horror Scream</string>
+    <string name="sound_beatbox">Beatbox</string>
+
+    <!-- Sound Settings -->
+    <string name="sound_settings">Sound Settings</string>
+    <string name="preview">Preview</string>
+    <string name="stop_preview">Stop</string>
+    <string name="flashlight">Flashlight</string>
+    <string name="vibration">Vibration</string>
+    <string name="volume">Volume</string>
+    <string name="duration">Duration</string>
+    <string name="sensitivity">Sensitivity</string>
+
+    <string name="flash_mode_default">Normal</string>
+    <string name="flash_mode_fast">Fast Blink</string>
+    <string name="flash_mode_sos">SOS</string>
+
+    <string name="vib_mode_default">Default</string>
+    <string name="vib_mode_strong">Strong</string>
+    <string name="vib_mode_heartbeat">Heartbeat</string>
+    <string name="vib_mode_sos">SOS</string>
+
+    <string name="duration_15s">15 Seconds</string>
+    <string name="duration_30s">30 Seconds</string>
+    <string name="duration_1m">1 Minute</string>
+    <string name="duration_2m">2 Minutes</string>
+    <string name="duration_loop">Continuous</string>
+
+    <string name="sensitivity_low">Low</string>
+    <string name="sensitivity_medium">Medium</string>
+    <string name="sensitivity_high">High</string>
+
+    <!-- Found Phone Alarm Screen -->
+    <string name="phone_found_title">Phone Found!</string>
+    <string name="motion_detected_title">Motion Detected!</string>
+    <string name="pocket_detected_title">Pocket Removal Detected!</string>
+    <string name="alarm_subtitle">Clap or sensor alarm triggered</string>
+    <string name="stop_alarm">STOP ALARM</string>
+
+    <!-- Settings & Guide -->
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="rate_app">Rate App</string>
+    <string name="share_app">Share App</string>
+    <string name="version">Version</string>
+    <string name="save">Save</string>
+
+    <!-- Permissions -->
+    <string name="permission_audio_title">Microphone Permission</string>
+    <string name="permission_audio_desc">Microphone permission is required to detect clapping sound in background.</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="notification_service_title">Find Phone By Clap is active</string>
+    <string name="notification_service_desc">Tap to open app and deactivate</string>
+</resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg_dark">
+
+    <!-- Top Alert Icon / Banner -->
+    <ImageView
+        android:id="@+id/ivAlertRadar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/boomclap_ic_activate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Alert Title -->
+    <TextView
+        android:id="@+id/tvAlarmTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/phone_found_title"
+        android:textColor="@color/neon_active_green"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivAlertRadar" />
+
+    <!-- Alert Subtitle -->
+    <TextView
+        android:id="@+id/tvAlarmSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/alarm_subtitle"
+        android:textColor="@color/text_secondary"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAlarmTitle" />
+
+    <!-- Big Stop Alarm Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStopAlarm"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/alarm_red"
+        android:elevation="8dp"
+        android:text="@string/stop_alarm"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="32dp"
+        app:icon="@drawable/boomclap_ic_sound_play_stop1"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconSize="28dp"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

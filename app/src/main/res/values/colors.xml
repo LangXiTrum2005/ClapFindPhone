@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- BoomClap Theme Palette -->
+    <color name="app_bg_dark">#07002A</color>
+    <color name="app_bg_surface">#0E053D</color>
+    <color name="app_card_bg">#180F4A</color>
+    <color name="app_card_bg_selected">#2D1C7A</color>
+    <color name="app_card_border">#2C1F6E</color>
+    <color name="color_B0A5F4">#B0A5F4</color>
+
+    <color name="primary_purple">#7B5CFF</color>
+    <color name="primary_purple_light">#9A82FF</color>
+    <color name="primary_purple_dark">#5432D3</color>
+    
+    <color name="accent_pink">#FF3B70</color>
+    <color name="accent_cyan">#00E5FF</color>
+    <color name="neon_active_green">#00FF9D</color>
+    <color name="alarm_red">#FF1744</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#ABA4DC</color>
+    <color name="text_hint">#695F9C</color>
+
+    <color name="tab_selected_bg">#7B5CFF</color>
+    <color name="tab_unselected_bg">#1A104E</color>
+</resources>

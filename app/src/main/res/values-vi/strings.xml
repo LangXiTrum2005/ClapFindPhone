@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">Tìm Điện Thoại Bằng Vỗ Tay</string>
+    <string name="clap_mode_title">Vỗ tay</string>
+    <string name="touch_mode_title">Không chạm</string>
+    <string name="pocket_mode_title">Bỏ túi</string>
+
+    <string name="tap_to_activate">Chạm để Bật</string>
+    <string name="tap_to_deactivate">Chạm để Tắt</string>
+    <string name="active">ĐANG BẬT</string>
+    <string name="inactive">ĐANG TẮT</string>
+    <string name="status_clap_active">Đang lắng nghe tiếng vỗ tay &amp; huýt sáo…</string>
+    <string name="status_touch_active">Cảnh báo chống dịch chuyển máy đã bật</string>
+    <string name="status_pocket_active">Cảnh báo chống móc túi đã bật</string>
+    <string name="status_touch_countdown">Đặt điện thoại xuống sau %d giây…</string>
+    <string name="how_to_use">Hướng dẫn</string>
+    <string name="select_sound">Chọn âm thanh</string>
+    <string name="more_sounds">Thêm âm thanh</string>
+
+    <!-- Sound Names -->
+    <string name="sound_airhorn">Còi hơi</string>
+    <string name="sound_cat">Mèo kêu</string>
+    <string name="sound_dog">Chó sủa</string>
+    <string name="sound_rooster">Gà gáy</string>
+    <string name="sound_gun">Tiếng súng</string>
+    <string name="sound_bomb">Bom nổ</string>
+    <string name="sound_warning">Còi cảnh sát</string>
+    <string name="sound_baby_smile">Em bé cười</string>
+    <string name="sound_hahaha">Tiếng cười</string>
+    <string name="sound_nokia">Nhạc chuông Nokia</string>
+    <string name="sound_horn_stabs">Còi xe</string>
+    <string name="sound_cow">Bò kêu</string>
+    <string name="sound_discord">Thông báo</string>
+    <string name="sound_happy">Huýt sáo vui nhộn</string>
+    <string name="sound_here">Tôi ở đây</string>
+    <string name="sound_burp">Ợ hơi</string>
+    <string name="sound_magic">Phép thuật</string>
+    <string name="sound_oh_no">Oh No</string>
+    <string name="sound_oiia">Oiia Meme</string>
+    <string name="sound_shriek">Tiếng hét</string>
+    <string name="sound_snoring">Ngủ ngáy</string>
+    <string name="sound_ting">Ting Ting Ting</string>
+    <string name="sound_wolf">Chó sói hú</string>
+    <string name="sound_disco">Nhạc Disco</string>
+    <string name="sound_car_horn">Còi báo động ô tô</string>
+    <string name="sound_fart">Đánh rắm</string>
+    <string name="sound_horror">Kinh dị</string>
+    <string name="sound_beatbox">Beatbox</string>
+
+    <!-- Sound Settings -->
+    <string name="sound_settings">Cài đặt âm thanh</string>
+    <string name="preview">Nghe thử</string>
+    <string name="stop_preview">Dừng</string>
+    <string name="flashlight">Đèn Flash</string>
+    <string name="vibration">Rung</string>
+    <string name="volume">Âm lượng</string>
+    <string name="duration">Thời lượng phát</string>
+    <string name="sensitivity">Độ nhạy</string>
+
+    <string name="flash_mode_default">Bình thường</string>
+    <string name="flash_mode_fast">Nháy nhanh</string>
+    <string name="flash_mode_sos">SOS</string>
+
+    <string name="vib_mode_default">Mặc định</string>
+    <string name="vib_mode_strong">Rung mạnh</string>
+    <string name="vib_mode_heartbeat">Nhịp tim</string>
+    <string name="vib_mode_sos">SOS</string>
+
+    <string name="duration_15s">15 Giây</string>
+    <string name="duration_30s">30 Giây</string>
+    <string name="duration_1m">1 Phút</string>
+    <string name="duration_2m">2 Phút</string>
+    <string name="duration_loop">Liên tục</string>
+
+    <string name="sensitivity_low">Thấp</string>
+    <string name="sensitivity_medium">Vừa</string>
+    <string name="sensitivity_high">Cao</string>
+
+    <!-- Found Phone Alarm Screen -->
+    <string name="phone_found_title">Đã tìm thấy điện thoại!</string>
+    <string name="motion_detected_title">Phát hiện dịch chuyển!</string>
+    <string name="pocket_detected_title">Phát hiện rút khỏi túi!</string>
+    <string name="alarm_subtitle">Báo động phát hiện âm thanh/cảm biến</string>
+    <string name="stop_alarm">DỪNG BÁO ĐỘNG</string>
+
+    <!-- Settings & Guide -->
+    <string name="settings">Cài đặt</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="privacy_policy">Chính sách bảo mật</string>
+    <string name="rate_app">Đánh giá ứng dụng</string>
+    <string name="share_app">Chia sẻ ứng dụng</string>
+    <string name="version">Phiên bản</string>
+    <string name="save">Lưu</string>
+
+    <!-- Permissions -->
+    <string name="permission_audio_title">Quyền truy cập Micro</string>
+    <string name="permission_audio_desc">Cần quyền Micro để phát hiện tiếng vỗ tay khi màn hình tắt hoặc chạy ngầm.</string>
+    <string name="grant_permission">Cấp quyền</string>
+    <string name="notification_service_title">Ứng dụng đang bảo vệ thiết bị</string>
+    <string name="notification_service_desc">Chạm để mở ứng dụng và tắt chế độ</string>
+</resources>

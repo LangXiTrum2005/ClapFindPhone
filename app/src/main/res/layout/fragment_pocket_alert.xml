@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="40dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_marginTop="16dp">
+
+            <com.example.findphonebyclap.ui.main.view.ClapButton
+                android:id="@+id/btnPocket"
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvStatusTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/tap_to_activate"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvStatusDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:text="@string/status_pocket_active"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/select_sound"
+                android:textColor="@color/text_primary"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btnMoreSounds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="@string/more_sounds"
+                android:textColor="@color/accent_cyan"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSounds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="14dp"
+            android:nestedScrollingEnabled="false" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
