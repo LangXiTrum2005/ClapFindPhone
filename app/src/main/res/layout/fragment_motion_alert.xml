@@ -92,8 +92,7 @@
                 <ImageView
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:src="@drawable/boomclap_ic_home_flash"
-                    app:tint="@color/accent_cyan" />
+                    android:src="@drawable/ic_info_circle_red" />
 
                 <TextView
                     android:layout_width="0dp"
