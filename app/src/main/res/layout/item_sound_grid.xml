@@ -4,10 +4,13 @@
     android:id="@+id/cardSound"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:focusable="true"
     app:cardBackgroundColor="@color/app_card_bg"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="2dp"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="0dp"
+    app:rippleColor="@color/glass_white_10"
     app:strokeColor="@color/app_card_border"
     app:strokeWidth="1.5dp">
 
@@ -16,25 +19,39 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:paddingStart="8dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="14dp">
 
         <FrameLayout
-            android:layout_width="54dp"
-            android:layout_height="54dp">
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_oval"
+                android:backgroundTint="@color/glass_white_05" />
 
             <ImageView
                 android:id="@+id/ivSoundIcon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
                 android:scaleType="fitCenter"
-                android:src="@drawable/boomclap_btn_home_clap" />
+                android:src="@mipmap/air_horn" />
 
             <ImageView
                 android:id="@+id/ivPlayIndicator"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_gravity="bottom|end"
+                android:background="@drawable/shape_oval"
+                android:backgroundTint="@color/neon_active_green"
+                android:padding="4dp"
                 android:src="@drawable/boomclap_ic_sound_play_normal"
+                app:tint="@color/app_bg_dark"
                 android:visibility="gone" />
         </FrameLayout>
 
@@ -42,13 +59,14 @@
             android:id="@+id/tvSoundTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
             android:text="@string/sound_airhorn"
             android:textColor="@color/text_primary"
-            android:textSize="13sp"
+            android:textSize="12.5sp"
             android:textStyle="bold" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
+

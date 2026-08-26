@@ -11,7 +11,7 @@
     <string name="status_clap_active">Đang lắng nghe tiếng vỗ tay &amp; huýt sáo…</string>
     <string name="status_touch_active">Cảnh báo chống dịch chuyển máy đã bật</string>
     <string name="status_pocket_active">Cảnh báo chống móc túi đã bật</string>
-    <string name="status_touch_countdown">Đặt điện thoại xuống sau %d giây…</string>
+    <string name="status_touch_countdown">Đặt điện thoại xuống sau 4 giây…</string>
     <string name="how_to_use">Hướng dẫn</string>
     <string name="select_sound">Chọn âm thanh</string>
     <string name="more_sounds">Thêm âm thanh</string>
@@ -82,7 +82,6 @@
     <string name="alarm_subtitle">Báo động phát hiện âm thanh/cảm biến</string>
     <string name="stop_alarm">DỪNG BÁO ĐỘNG</string>
 
-    <!-- Settings & Guide -->
     <string name="settings">Cài đặt</string>
     <string name="language">Ngôn ngữ</string>
     <string name="privacy_policy">Chính sách bảo mật</string>
@@ -90,6 +89,17 @@
     <string name="share_app">Chia sẻ ứng dụng</string>
     <string name="version">Phiên bản</string>
     <string name="save">Lưu</string>
+
+    <!-- Guide Steps -->
+    <string name="guide_step1_title">1. Chọn chế độ bạn muốn</string>
+    <string name="guide_step1_desc">Chọn chế độ Vỗ tay tìm điện thoại, Không chạm máy hoặc Bỏ túi từ các tab phía trên.</string>
+    <string name="guide_step2_title">2. Chạm để kích hoạt</string>
+    <string name="guide_step2_desc">Chạm vào nút radar phát sáng ở giữa để kích hoạt. Ứng dụng sẽ bắt đầu quét trong nền.</string>
+    <string name="guide_step3_title">3. Vỗ tay 2 lần để tìm máy!</string>
+    <string name="guide_step3_desc">Vỗ tay 2 lần hoặc huýt sáo. Điện thoại của bạn sẽ ngay lập tức reo chuông cực đại, nháy đèn flash và rung.</string>
+    <string name="guide_got_it">Đã hiểu!</string>
+    <string name="status_pocket_tip">Chuông báo sẽ reo ngay khi điện thoại bị rút ra khỏi túi quần hoặc ba lô.</string>
+    <string name="app_tagline">TÌM ĐIỆN THOẠI THÔNG MINH</string>
 
     <!-- Permissions -->
     <string name="permission_audio_title">Quyền truy cập Micro</string>

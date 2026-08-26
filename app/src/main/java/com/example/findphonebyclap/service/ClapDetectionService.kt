@@ -14,7 +14,9 @@ class ClapDetectionService : BaseAlarmService() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val result = super.onStartCommand(intent, flags, startId)
-        startListening()
+        if (prefs.activeMode == FunctionMode.MODE_CLAP_FIND_PHONE && intent?.action == null) {
+            startListening()
+        }
         return result
     }
 

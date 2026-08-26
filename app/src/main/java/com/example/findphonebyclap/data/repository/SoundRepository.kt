@@ -13,37 +13,47 @@ class SoundRepository(private val context: Context) {
     var onPreviewStateChanged: ((Boolean) -> Unit)? = null
 
     val allSounds: List<SoundItem> = listOf(
-        SoundItem("airhorn", "airhorn.mp3", R.string.sound_airhorn, R.drawable.boomclap_btn_home_clap),
-        SoundItem("warning", "warning.mp3", R.string.sound_warning, R.drawable.boomclap_btn_home_2),
-        SoundItem("cat", "Cat.mp3", R.string.sound_cat, R.drawable.boomclap_btn_home_3),
-        SoundItem("dog", "dog.mp3", R.string.sound_dog, R.drawable.boomclap_btn_home_4),
-        SoundItem("rooster", "rooster.mp3", R.string.sound_rooster, R.drawable.boomclap_btn_home_5),
-        SoundItem("gun", "gun.mp3", R.string.sound_gun, R.drawable.boomclap_btn_home_default),
-        SoundItem("bomb", "bomb.mp3", R.string.sound_bomb, R.drawable.boomclap_btn_home_touch),
-        SoundItem("baby_smile", "BabySmile.mp3", R.string.sound_baby_smile, R.drawable.boomclap_btn_home_pocket),
-        SoundItem("hahaha", "hahaha.mp3", R.string.sound_hahaha, R.drawable.boomclap_btn_home_clap),
-        SoundItem("nokia", "Nokia Ringtone.mp3", R.string.sound_nokia, R.drawable.boomclap_btn_home_2),
-        SoundItem("horn_stabs", "HornStabs.mp3", R.string.sound_horn_stabs, R.drawable.boomclap_btn_home_3),
-        SoundItem("cow", "Cow.mp3", R.string.sound_cow, R.drawable.boomclap_btn_home_4),
-        SoundItem("happy", "Happy.mp3", R.string.sound_happy, R.drawable.boomclap_btn_home_5),
-        SoundItem("here", "here.mp3", R.string.sound_here, R.drawable.boomclap_btn_home_default),
-        SoundItem("burp", "LoudBurp.mp3", R.string.sound_burp, R.drawable.boomclap_btn_home_touch),
-        SoundItem("magic", "Magic.mp3", R.string.sound_magic, R.drawable.boomclap_btn_home_pocket),
-        SoundItem("oh_no", "Oh No.mpeg", R.string.sound_oh_no, R.drawable.boomclap_btn_home_clap),
-        SoundItem("oiia", "Oiiaiiooiiai.mp3", R.string.sound_oiia, R.drawable.boomclap_btn_home_2),
-        SoundItem("shriek", "shriek.mp3", R.string.sound_shriek, R.drawable.boomclap_btn_home_3),
-        SoundItem("snoring", "snoring.mp3", R.string.sound_snoring, R.drawable.boomclap_btn_home_4),
-        SoundItem("ting", "TingTingTing.mp3", R.string.sound_ting, R.drawable.boomclap_btn_home_5),
-        SoundItem("wolf", "VIP_Wolf.mp3", R.string.sound_wolf, R.drawable.boomclap_btn_home_default),
-        SoundItem("disco", "vip_Disco.mp3", R.string.sound_disco, R.drawable.boomclap_btn_home_touch),
-        SoundItem("car_horn", "vip_CarHorn.mp3", R.string.sound_car_horn, R.drawable.boomclap_btn_home_pocket),
-        SoundItem("fart", "vip_Fart.mp3", R.string.sound_fart, R.drawable.boomclap_btn_home_clap),
-        SoundItem("horror", "vip_Horror.mp3", R.string.sound_horror, R.drawable.boomclap_btn_home_2),
-        SoundItem("beatbox", "vip_Beatbox.mp3", R.string.sound_beatbox, R.drawable.boomclap_btn_home_3)
+        SoundItem("airhorn", "airhorn.mp3", R.string.sound_airhorn, R.mipmap.air_horn),
+        SoundItem("warning", "warning.mp3", R.string.sound_warning, R.mipmap.warning),
+        SoundItem("cat", "Cat.mp3", R.string.sound_cat, R.mipmap.cat),
+        SoundItem("dog", "dog.mp3", R.string.sound_dog, R.mipmap.dog),
+        SoundItem("rooster", "rooster.mp3", R.string.sound_rooster, R.mipmap.rooster),
+        SoundItem("gun", "gun.mp3", R.string.sound_gun, R.mipmap.gun),
+        SoundItem("bomb", "bomb.mp3", R.string.sound_bomb, R.mipmap.bomb),
+        SoundItem("baby_smile", "BabySmile.mp3", R.string.sound_baby_smile, R.mipmap.baby_smile),
+        SoundItem("hahaha", "hahaha.mp3", R.string.sound_hahaha, R.mipmap.hahaha),
+        SoundItem("nokia", "Nokia Ringtone.mp3", R.string.sound_nokia, R.mipmap.nokia),
+        SoundItem("horn_stabs", "HornStabs.mp3", R.string.sound_horn_stabs, R.mipmap.sound_horn_stab),
+        SoundItem("cow", "Cow.mp3", R.string.sound_cow, R.mipmap.sound_cow),
+        SoundItem("happy", "Happy.mp3", R.string.sound_happy, R.mipmap.happy),
+        SoundItem("here", "here.mp3", R.string.sound_here, R.mipmap.here),
+        SoundItem("burp", "LoudBurp.mp3", R.string.sound_burp, R.mipmap.sound_loud_burp),
+        SoundItem("magic", "Magic.mp3", R.string.sound_magic, R.mipmap.sound_magic),
+        SoundItem("oh_no", "Oh No.mpeg", R.string.sound_oh_no, R.mipmap.oh_no),
+        SoundItem("oiia", "Oiiaiiooiiai.mp3", R.string.sound_oiia, R.mipmap.sound_oiiaiiooiiai),
+        SoundItem("shriek", "shriek.mp3", R.string.sound_shriek, R.mipmap.shriek),
+        SoundItem("snoring", "snoring.mp3", R.string.sound_snoring, R.mipmap.snoring),
+        SoundItem("ting", "TingTingTing.mp3", R.string.sound_ting, R.mipmap.sound_tingtingting),
+        SoundItem("wolf", "VIP_Wolf.mp3", R.string.sound_wolf, R.mipmap.sound_wolf, isVip = true),
+        SoundItem("disco", "vip_Disco.mp3", R.string.sound_disco, R.mipmap.sound_disco, isVip = true),
+        SoundItem("car_horn", "vip_CarHorn.mp3", R.string.sound_car_horn, R.mipmap.car_horn, isVip = true),
+        SoundItem("fart", "vip_Fart.mp3", R.string.sound_fart, R.mipmap.sound_fart, isVip = true),
+        SoundItem("horror", "vip_Horror.mp3", R.string.sound_horror, R.mipmap.sound_horror, isVip = true),
+        SoundItem("beatbox", "vip_Beatbox.mp3", R.string.sound_beatbox, R.mipmap.sound_beatbox, isVip = true)
     )
 
     fun getSoundById(id: String): SoundItem {
         return allSounds.find { it.id == id } ?: allSounds.first()
+    }
+
+    fun getQuickSounds(selectedId: String, count: Int = 6): List<SoundItem> {
+        val selected = allSounds.find { it.id == selectedId }
+        val rest = allSounds.filter { it.id != selectedId }
+        return if (selected != null) {
+            listOf(selected) + rest.take(count - 1)
+        } else {
+            allSounds.take(count)
+        }
     }
 
     fun playPreview(soundItem: SoundItem) {

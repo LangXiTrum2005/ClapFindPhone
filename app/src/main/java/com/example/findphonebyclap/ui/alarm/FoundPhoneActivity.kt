@@ -16,6 +16,7 @@ import com.example.findphonebyclap.databinding.ActivityFoundPhoneBinding
 import com.example.findphonebyclap.service.ClapDetectionService
 import com.example.findphonebyclap.service.MotionDetectionService
 import com.example.findphonebyclap.service.PocketDetectionService
+import com.example.findphonebyclap.service.ServiceManager
 import com.example.findphonebyclap.util.Constants
 import java.lang.ref.WeakReference
 
@@ -102,22 +103,7 @@ class FoundPhoneActivity : AppCompatActivity() {
     }
 
     private fun stopAllAlarms() {
-        val stopAlarmIntent = Intent(Constants.ACTION_STOP_ALARM)
-        sendBroadcast(stopAlarmIntent)
-
-        // Stop alarm across any active service
-        val stopClap = Intent(this, ClapDetectionService::class.java).apply {
-            action = Constants.ACTION_STOP_ALARM
-        }
-        val stopMotion = Intent(this, MotionDetectionService::class.java).apply {
-            action = Constants.ACTION_STOP_ALARM
-        }
-        val stopPocket = Intent(this, PocketDetectionService::class.java).apply {
-            action = Constants.ACTION_STOP_ALARM
-        }
-        startService(stopClap)
-        startService(stopMotion)
-        startService(stopPocket)
+        ServiceManager.stopAllServices(this)
     }
 
     override fun onDestroy() {

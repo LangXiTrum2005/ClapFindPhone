@@ -16,13 +16,25 @@ class SoundSettingActivity : AppCompatActivity() {
     private val prefs by lazy { AppPreferences.getInstance(this) }
     private val soundRepository by lazy { SoundRepository(this) }
     private lateinit var soundAdapter: SoundAdapter
+    private var selectedSoundId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySoundSettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnBack.setOnClickListener { finish() }
+        selectedSoundId = prefs.selectedSoundId
+
+        binding.btnBack.setOnClickListener {
+            soundRepository.stopPreview()
+            finish()
+        }
+
+        binding.btnSaveSound.setOnClickListener {
+            prefs.selectedSoundId = selectedSoundId
+            soundRepository.stopPreview()
+            finish()
+        }
 
         setupCurrentSoundHeader()
         setupSoundGrid()
@@ -33,7 +45,7 @@ class SoundSettingActivity : AppCompatActivity() {
     }
 
     private fun setupCurrentSoundHeader() {
-        val currentSound = soundRepository.getSoundById(prefs.selectedSoundId)
+        val currentSound = soundRepository.getSoundById(selectedSoundId)
         binding.ivCurrentSoundCover.setImageResource(currentSound.iconRes)
         binding.tvCurrentSoundTitle.text = getString(currentSound.nameRes)
 
@@ -41,7 +53,7 @@ class SoundSettingActivity : AppCompatActivity() {
             if (soundRepository.isPreviewPlaying()) {
                 soundRepository.stopPreview()
             } else {
-                val sound = soundRepository.getSoundById(prefs.selectedSoundId)
+                val sound = soundRepository.getSoundById(selectedSoundId)
                 soundRepository.playPreview(sound)
             }
         }
@@ -49,13 +61,13 @@ class SoundSettingActivity : AppCompatActivity() {
         soundRepository.onPreviewStateChanged = { isPlaying ->
             binding.btnPlayPreview.text =
                 if (isPlaying) getString(R.string.stop_preview) else getString(R.string.preview)
-            soundAdapter.setPlayingSound(if (isPlaying) prefs.selectedSoundId else null)
+            soundAdapter.setPlayingSound(if (isPlaying) selectedSoundId else null)
         }
     }
 
     private fun setupSoundGrid() {
-        soundAdapter = SoundAdapter(soundRepository.allSounds, prefs.selectedSoundId) { sound ->
-            prefs.selectedSoundId = sound.id
+        soundAdapter = SoundAdapter(soundRepository.allSounds, selectedSoundId) { sound ->
+            selectedSoundId = sound.id
             binding.ivCurrentSoundCover.setImageResource(sound.iconRes)
             binding.tvCurrentSoundTitle.text = getString(sound.nameRes)
             soundRepository.playPreview(sound)

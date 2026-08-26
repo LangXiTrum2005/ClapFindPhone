@@ -14,7 +14,9 @@ class PocketDetectionService : BaseAlarmService() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val result = super.onStartCommand(intent, flags, startId)
-        startListening()
+        if (prefs.activeMode == FunctionMode.MODE_ANTI_PICKPOCKET && intent?.action == null) {
+            startListening()
+        }
         return result
     }
 

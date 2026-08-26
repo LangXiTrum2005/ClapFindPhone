@@ -11,7 +11,7 @@
     <string name="status_clap_active">Listening for clapping &amp; whistle…</string>
     <string name="status_touch_active">Motion alarm is armed</string>
     <string name="status_pocket_active">Pocket alarm is armed</string>
-    <string name="status_touch_countdown">Place phone down in %d s…</string>
+    <string name="status_touch_countdown">Place phone down in 4 s…</string>
     <string name="how_to_use">How to Use</string>
     <string name="select_sound">Select Sound</string>
     <string name="more_sounds">More Sounds</string>
@@ -82,7 +82,6 @@
     <string name="alarm_subtitle">Clap or sensor alarm triggered</string>
     <string name="stop_alarm">STOP ALARM</string>
 
-    <!-- Settings & Guide -->
     <string name="settings">Settings</string>
     <string name="language">Language</string>
     <string name="privacy_policy">Privacy Policy</string>
@@ -90,6 +89,17 @@
     <string name="share_app">Share App</string>
     <string name="version">Version</string>
     <string name="save">Save</string>
+
+    <!-- Guide Steps -->
+    <string name="guide_step1_title">1. Choose Your Preferred Mode</string>
+    <string name="guide_step1_desc">Select Clap to Find, Don\'t Touch Phone, or Anti-Pickpocket from the top tabs.</string>
+    <string name="guide_step2_title">2. Tap Activate</string>
+    <string name="guide_step2_desc">Tap the central glowing radar button to activate. The background monitoring service will start immediately.</string>
+    <string name="guide_step3_title">3. Clap Twice to Locate!</string>
+    <string name="guide_step3_desc">Clap your hands twice or whistle. Your phone will immediately ring at full volume, flash the strobe light, and vibrate.</string>
+    <string name="guide_got_it">Got It!</string>
+    <string name="status_pocket_tip">Alarm will sound immediately if phone is removed from your pocket or bag.</string>
+    <string name="app_tagline">SMART ACOUSTIC FINDER</string>
 
     <!-- Permissions -->
     <string name="permission_audio_title">Microphone Permission</string>

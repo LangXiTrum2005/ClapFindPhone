@@ -18,6 +18,7 @@ class MotionDetector(private val context: Context) : SensorEventListener {
     private var isCalibrated = false
     private var lastStillTime = 0L
     private var isListening = false
+    private var startTime = 0L
 
     var onMotionDetected: (() -> Unit)? = null
 
@@ -26,6 +27,7 @@ class MotionDetector(private val context: Context) : SensorEventListener {
         onMotionDetected = listener
         isCalibrated = false
         lastStillTime = 0L
+        startTime = System.currentTimeMillis()
 
         if (accelerometer != null && sensorManager != null) {
             isListening = true
@@ -54,8 +56,9 @@ class MotionDetector(private val context: Context) : SensorEventListener {
                     linearAcceleration[2] * linearAcceleration[2]).toDouble()
         ).toFloat()
 
-        if (magnitude >= 2.0f) {
-            if (isCalibrated && (System.currentTimeMillis() - lastStillTime > 1000)) {
+        if (magnitude >= 1.8f) {
+            // Trigger if device was placed down and now moved, OR if after 4s delay user still hasn't placed it down
+            if (isCalibrated || (System.currentTimeMillis() - startTime > 500L)) {
                 onMotionDetected?.invoke()
             }
             isCalibrated = false

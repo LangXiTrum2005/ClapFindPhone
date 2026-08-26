@@ -3,23 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="@color/app_bg_dark">
 
-    <!-- Top Bar -->
+    <!-- Top Bar with Glass Icon -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:paddingStart="12dp"
+        android:layout_height="64dp"
+        android:paddingStart="16dp"
         android:paddingEnd="16dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="8dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_circle_icon_button"
+            android:padding="10dp"
             android:src="@drawable/boomclap_ic_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +29,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:letterSpacing="0.02"
             android:text="@string/sound_settings"
             android:textColor="@color/text_primary"
             android:textSize="18sp"
@@ -35,6 +37,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnSaveSound"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_circle_save_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="11dp"
+            android:src="@drawable/ic_check_mark"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -53,16 +69,16 @@
             android:orientation="vertical"
             android:paddingBottom="40dp">
 
-            <!-- Selected Sound Preview Card -->
+            <!-- Selected Sound Hero Glass Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="18dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
                 app:cardBackgroundColor="@color/app_card_bg"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="3dp"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="0dp"
                 app:strokeColor="@color/app_card_border"
                 app:strokeWidth="1dp">
 
@@ -71,13 +87,28 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:paddingStart="24dp"
+                    android:paddingTop="20dp"
+                    android:paddingEnd="24dp"
+                    android:paddingBottom="20dp">
 
-                    <ImageView
-                        android:id="@+id/ivCurrentSoundCover"
-                        android:layout_width="88dp"
-                        android:layout_height="88dp"
-                        android:src="@drawable/boomclap_btn_home_clap" />
+                    <FrameLayout
+                        android:layout_width="96dp"
+                        android:layout_height="96dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/shape_oval"
+                            android:backgroundTint="@color/glass_white_05" />
+
+                        <ImageView
+                            android:id="@+id/ivCurrentSoundCover"
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/boomclap_btn_home_clap" />
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/tvCurrentSoundTitle"
@@ -95,11 +126,18 @@
                         android:layout_height="44dp"
                         android:layout_marginTop="14dp"
                         android:backgroundTint="@color/primary_purple"
+                        android:letterSpacing="0.04"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="24dp"
                         android:text="@string/preview"
                         android:textColor="@color/white"
+                        android:textSize="13.5sp"
                         android:textStyle="bold"
                         app:cornerRadius="22dp"
+                        app:elevation="0dp"
                         app:icon="@drawable/boomclap_ic_sound_play_normal"
+                        app:iconGravity="textStart"
+                        app:iconPadding="8dp"
                         app:iconTint="@color/white" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -108,31 +146,33 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
+                android:letterSpacing="0.02"
                 android:text="@string/select_sound"
                 android:textColor="@color/text_primary"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAllSounds"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="14dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="14dp"
                 android:nestedScrollingEnabled="false" />
 
             <!-- Flashlight Configuration Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="18dp"
+                android:layout_marginEnd="20dp"
                 app:cardBackgroundColor="@color/app_card_bg"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
                 app:strokeColor="@color/app_card_border"
                 app:strokeWidth="1dp">
 
@@ -140,7 +180,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="18dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -149,9 +189,10 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:src="@drawable/boomclap_ic_home_flash" />
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/boomclap_ic_home_flash"
+                            app:tint="@color/accent_cyan" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -160,21 +201,24 @@
                             android:layout_weight="1"
                             android:text="@string/flashlight"
                             android:textColor="@color/text_primary"
-                            android:textSize="16sp"
+                            android:textSize="15.5sp"
                             android:textStyle="bold" />
 
                         <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchFlashlight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true" />
+                            android:checked="true"
+                            app:thumbTint="@color/white"
+                            app:trackDecorationTint="@color/primary_purple"
+                            app:trackTint="@color/primary_purple" />
                     </LinearLayout>
 
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroupFlash"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         app:singleSelection="true">
 
                         <com.google.android.material.chip.Chip
@@ -208,11 +252,12 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginEnd="18dp"
+                android:layout_marginEnd="20dp"
                 app:cardBackgroundColor="@color/app_card_bg"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
                 app:strokeColor="@color/app_card_border"
                 app:strokeWidth="1dp">
 
@@ -220,7 +265,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="18dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -229,9 +274,10 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="28dp"
-                            android:layout_height="28dp"
-                            android:src="@drawable/boomclap_ic_home_vibration" />
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/boomclap_ic_home_vibration"
+                            app:tint="@color/accent_cyan" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -240,21 +286,24 @@
                             android:layout_weight="1"
                             android:text="@string/vibration"
                             android:textColor="@color/text_primary"
-                            android:textSize="16sp"
+                            android:textSize="15.5sp"
                             android:textStyle="bold" />
 
                         <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchVibration"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true" />
+                            android:checked="true"
+                            app:thumbTint="@color/white"
+                            app:trackDecorationTint="@color/primary_purple"
+                            app:trackTint="@color/primary_purple" />
                     </LinearLayout>
 
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroupVibration"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         app:singleSelection="true">
 
                         <com.google.android.material.chip.Chip
@@ -296,11 +345,12 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginEnd="18dp"
+                android:layout_marginEnd="20dp"
                 app:cardBackgroundColor="@color/app_card_bg"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
                 app:strokeColor="@color/app_card_border"
                 app:strokeWidth="1dp">
 
@@ -308,7 +358,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="18dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -322,16 +372,21 @@
                             android:layout_weight="1"
                             android:text="@string/volume"
                             android:textColor="@color/text_primary"
-                            android:textSize="16sp"
+                            android:textSize="15.5sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tvVolumeVal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/bg_status_pill_inactive"
+                            android:paddingStart="12dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="12dp"
+                            android:paddingBottom="4dp"
                             android:text="100%"
                             android:textColor="@color/accent_cyan"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -339,13 +394,16 @@
                         android:id="@+id/sliderVolume"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="10dp"
                         android:value="100.0"
                         android:valueFrom="10.0"
                         android:valueTo="100.0"
+                        app:haloColor="@color/glass_white_10"
                         app:thumbColor="@color/primary_purple"
+                        app:thumbRadius="10dp"
                         app:trackColorActive="@color/primary_purple"
-                        app:trackColorInactive="@color/app_card_border" />
+                        app:trackColorInactive="@color/app_card_border"
+                        app:trackHeight="6dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -353,11 +411,12 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginEnd="18dp"
+                android:layout_marginEnd="20dp"
                 app:cardBackgroundColor="@color/app_card_bg"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
                 app:strokeColor="@color/app_card_border"
                 app:strokeWidth="1dp">
 
@@ -365,21 +424,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="18dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/duration"
                         android:textColor="@color/text_primary"
-                        android:textSize="16sp"
+                        android:textSize="15.5sp"
                         android:textStyle="bold" />
 
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroupDuration"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         app:singleSelection="true">
 
                         <com.google.android.material.chip.Chip
@@ -429,3 +488,4 @@
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

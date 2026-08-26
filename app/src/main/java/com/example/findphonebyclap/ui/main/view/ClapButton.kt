@@ -1,14 +1,19 @@
 package com.example.findphonebyclap.ui.main.view
 
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RadialGradient
+import android.graphics.RectF
 import android.graphics.Shader
+import android.graphics.SweepGradient
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
+import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
@@ -21,42 +26,49 @@ class ClapButton @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private var isActive = false
-    private var rippleRadius1 = 0f
-    private var rippleRadius2 = 0f
-    private var rippleAlpha1 = 0
-    private var rippleAlpha2 = 0
-    private var rippleAnimator: ValueAnimator? = null
-
     private var iconDrawable = AppCompatResources.getDrawable(context, R.drawable.boomclap_btn_home_clap)
 
-    private val basePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    // Animation values
+    private var rippleFraction = 0f
+    private var rotationAngle = 0f
+    private var touchScale = 1.0f
+
+    private var waveAnimator: ValueAnimator? = null
+    private var rotationAnimator: ValueAnimator? = null
+
+    // Paints
+    private val wavePaint1 = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val wavePaint2 = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val wavePaint3 = Paint(Paint.ANTI_ALIAS_FLAG)
     private val glowPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val ripplePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val basePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val ringPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE }
+    private val radarLinePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE }
 
     init {
         isClickable = true
         isFocusable = true
-        setupAnimation()
+        setupAnimators()
     }
 
-    private fun setupAnimation() {
-        rippleAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
-            duration = 2000L
+    private fun setupAnimators() {
+        waveAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = 2200L
             repeatCount = ValueAnimator.INFINITE
             interpolator = LinearInterpolator()
             addUpdateListener { animator ->
-                val fraction = animator.animatedValue as Float
-                val maxRadius = width.coerceAtLeast(height) / 2f
-                val innerRadius = maxRadius * 0.55f
-
-                rippleRadius1 = innerRadius + (maxRadius - innerRadius) * fraction
-                rippleAlpha1 = ((1f - fraction) * 120).toInt().coerceIn(0, 255)
-
-                val fraction2 = (fraction + 0.5f) % 1.0f
-                rippleRadius2 = innerRadius + (maxRadius - innerRadius) * fraction2
-                rippleAlpha2 = ((1f - fraction2) * 120).toInt().coerceIn(0, 255)
-
+                rippleFraction = animator.animatedValue as Float
                 invalidate()
+            }
+        }
+
+        rotationAnimator = ValueAnimator.ofFloat(0f, 360f).apply {
+            duration = 6000L
+            repeatCount = ValueAnimator.INFINITE
+            interpolator = LinearInterpolator()
+            addUpdateListener { animator ->
+                rotationAngle = animator.animatedValue as Float
+                if (isActive) invalidate()
             }
         }
     }
@@ -65,9 +77,13 @@ class ClapButton @JvmOverloads constructor(
         if (isActive == active) return
         isActive = active
         if (isActive) {
-            rippleAnimator?.start()
+            waveAnimator?.start()
+            rotationAnimator?.start()
         } else {
-            rippleAnimator?.cancel()
+            waveAnimator?.cancel()
+            rotationAnimator?.cancel()
+            rippleFraction = 0f
+            rotationAngle = 0f
         }
         invalidate()
     }
@@ -79,60 +95,132 @@ class ClapButton @JvmOverloads constructor(
 
     fun isButtonActive(): Boolean = isActive
 
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                animateScale(0.93f)
+            }
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                animateScale(1.0f)
+            }
+        }
+        return super.onTouchEvent(event)
+    }
+
+    private fun animateScale(target: Float) {
+        ValueAnimator.ofFloat(touchScale, target).apply {
+            duration = 150L
+            interpolator = DecelerateInterpolator()
+            addUpdateListener {
+                touchScale = it.animatedValue as Float
+                invalidate()
+            }
+            start()
+        }
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val cx = width / 2f
         val cy = height / 2f
-        val radius = width.coerceAtMost(height) / 2f * 0.65f
+        val maxAvailableRadius = width.coerceAtMost(height) / 2f
+        val baseRadius = maxAvailableRadius * 0.58f * touchScale
 
-        // Draw animated ripples when active
+        // Draw animated concentric radar waves when active
         if (isActive) {
-            ripplePaint.color = Color.parseColor("#7B5CFF")
-            ripplePaint.alpha = rippleAlpha1
-            canvas.drawCircle(cx, cy, rippleRadius1, ripplePaint)
+            val maxWaveRadius = maxAvailableRadius * 0.98f
 
-            ripplePaint.color = Color.parseColor("#00FF9D")
-            ripplePaint.alpha = rippleAlpha2
-            canvas.drawCircle(cx, cy, rippleRadius2, ripplePaint)
-        }
+            // Wave 1
+            drawRippleWave(canvas, cx, cy, baseRadius, maxWaveRadius, rippleFraction, "#6366F1", "#00FF9D", wavePaint1)
+            // Wave 2 (offset 0.33)
+            val frac2 = (rippleFraction + 0.33f) % 1.0f
+            drawRippleWave(canvas, cx, cy, baseRadius, maxWaveRadius, frac2, "#8B5CF6", "#00E5FF", wavePaint2)
+            // Wave 3 (offset 0.66)
+            val frac3 = (rippleFraction + 0.66f) % 1.0f
+            drawRippleWave(canvas, cx, cy, baseRadius, maxWaveRadius, frac3, "#38BDF8", "#00FF9D", wavePaint3)
 
-        // Draw outer glow circle
-        if (isActive) {
+            // Outer ambient glow ring
             glowPaint.shader = RadialGradient(
-                cx, cy, radius * 1.35f,
-                intArrayOf(Color.parseColor("#9A82FF"), Color.parseColor("#7B5CFF"), Color.TRANSPARENT),
-                floatArrayOf(0.5f, 0.85f, 1.0f),
+                cx, cy, baseRadius * 1.35f,
+                intArrayOf(
+                    Color.argb(90, 99, 102, 241),
+                    Color.argb(40, 0, 255, 157),
+                    Color.TRANSPARENT
+                ),
+                floatArrayOf(0.6f, 0.85f, 1.0f),
                 Shader.TileMode.CLAMP
             )
-            canvas.drawCircle(cx, cy, radius * 1.3f, glowPaint)
+            canvas.drawCircle(cx, cy, baseRadius * 1.3f, glowPaint)
+        } else {
+            // Subtle ambient radar guide circles in inactive mode
+            radarLinePaint.color = Color.parseColor("#162035")
+            radarLinePaint.strokeWidth = 2f
+            canvas.drawCircle(cx, cy, baseRadius * 1.25f, radarLinePaint)
+            canvas.drawCircle(cx, cy, baseRadius * 1.5f, radarLinePaint)
         }
 
-        // Draw central button
+        // Draw outer glass halo ring
+        val haloStroke = if (isActive) 6f else 3f
+        ringPaint.strokeWidth = haloStroke
+        ringPaint.color = if (isActive) Color.parseColor("#00FF9D") else Color.parseColor("#22304D")
+        canvas.drawCircle(cx, cy, baseRadius + 6f, ringPaint)
+
+        // Draw central orb with 3D spherical gradient
         val centerColors = if (isActive) {
-            intArrayOf(Color.parseColor("#9D7BFF"), Color.parseColor("#5A32E8"))
+            intArrayOf(
+                Color.parseColor("#818CF8"),
+                Color.parseColor("#6366F1"),
+                Color.parseColor("#3730A3"),
+                Color.parseColor("#1E1B4B")
+            )
         } else {
-            intArrayOf(Color.parseColor("#2B1C6B"), Color.parseColor("#150B3D"))
+            intArrayOf(
+                Color.parseColor("#263554"),
+                Color.parseColor("#19243C"),
+                Color.parseColor("#11192B"),
+                Color.parseColor("#0A0F1D")
+            )
         }
 
         basePaint.shader = RadialGradient(
-            cx, cy - radius * 0.3f, radius,
+            cx - baseRadius * 0.25f,
+            cy - baseRadius * 0.35f,
+            baseRadius * 1.1f,
             centerColors,
-            floatArrayOf(0.0f, 1.0f),
+            floatArrayOf(0.0f, 0.45f, 0.8f, 1.0f),
             Shader.TileMode.CLAMP
         )
-        canvas.drawCircle(cx, cy, radius, basePaint)
+        canvas.drawCircle(cx, cy, baseRadius, basePaint)
 
-        // Draw border ring
-        val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        // Draw inner top highlight crescent
+        val highlightPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             style = Paint.Style.STROKE
-            strokeWidth = 6f
-            color = if (isActive) Color.parseColor("#00FF9D") else Color.parseColor("#443388")
+            strokeWidth = 3f
+            shader = RadialGradient(
+                cx, cy - baseRadius * 0.5f, baseRadius * 0.8f,
+                intArrayOf(Color.argb(120, 255, 255, 255), Color.TRANSPARENT),
+                floatArrayOf(0.0f, 1.0f),
+                Shader.TileMode.CLAMP
+            )
         }
-        canvas.drawCircle(cx, cy, radius, borderPaint)
+        val highlightRect = RectF(cx - baseRadius + 4f, cy - baseRadius + 4f, cx + baseRadius - 4f, cy + baseRadius - 4f)
+        canvas.drawArc(highlightRect, 200f, 140f, false, highlightPaint)
 
-        // Draw icon in center
+        // Draw rotating neon scanner tick when active
+        if (isActive) {
+            val scanPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+                style = Paint.Style.STROKE
+                strokeWidth = 3.5f
+                color = Color.parseColor("#00E5FF")
+            }
+            val sweepRect = RectF(cx - baseRadius + 2f, cy - baseRadius + 2f, cx + baseRadius - 2f, cy + baseRadius - 2f)
+            canvas.drawArc(sweepRect, rotationAngle, 45f, false, scanPaint)
+        }
+
+        // Draw centered icon
         iconDrawable?.let { drawable ->
-            val iconSize = (radius * 1.05f).toInt()
+            val iconSize = (baseRadius * 1.05f).toInt()
             drawable.setBounds(
                 (cx - iconSize / 2).toInt(),
                 (cy - iconSize / 2).toInt(),
@@ -143,8 +231,33 @@ class ClapButton @JvmOverloads constructor(
         }
     }
 
+    private fun drawRippleWave(
+        canvas: Canvas,
+        cx: Float,
+        cy: Float,
+        minRadius: Float,
+        maxRadius: Float,
+        fraction: Float,
+        colorStartHex: String,
+        colorEndHex: String,
+        paint: Paint
+    ) {
+        val currentRadius = minRadius + (maxRadius - minRadius) * fraction
+        val alpha = ((1f - fraction) * 160).toInt().coerceIn(0, 255)
+        val strokeW = 3f + (1f - fraction) * 5f
+
+        paint.style = Paint.Style.STROKE
+        paint.strokeWidth = strokeW
+        paint.color = Color.parseColor(if (fraction > 0.5f) colorEndHex else colorStartHex)
+        paint.alpha = alpha
+
+        canvas.drawCircle(cx, cy, currentRadius, paint)
+    }
+
     override fun onDetachedFromWindow() {
-        rippleAnimator?.cancel()
+        waveAnimator?.cancel()
+        rotationAnimator?.cancel()
         super.onDetachedFromWindow()
     }
 }
+

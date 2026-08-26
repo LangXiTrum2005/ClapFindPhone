@@ -3,14 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="@color/app_bg_dark">
 
-    <!-- Top Alert Icon / Banner -->
+    <!-- Ambient Glow Circles -->
+    <View
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:background="@drawable/shape_oval"
+        android:backgroundTint="@color/glass_white_05"
+        app:layout_constraintBottom_toBottomOf="@+id/ivAlertRadar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivAlertRadar" />
+
+    <!-- Top Alert Radar Icon / Banner -->
     <ImageView
         android:id="@+id/ivAlertRadar"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_marginTop="90dp"
         android:src="@drawable/boomclap_ic_activate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +33,11 @@
         android:id="@+id/tvAlarmTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:letterSpacing="0.03"
         android:text="@string/phone_found_title"
         android:textColor="@color/neon_active_green"
         android:textSize="26sp"
@@ -30,15 +46,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivAlertRadar" />
 
-    <!-- Alert Subtitle -->
+    <!-- Alert Subtitle Pill -->
     <TextView
         android:id="@+id/tvAlarmSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_status_pill_inactive"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
         android:text="@string/alarm_subtitle"
         android:textColor="@color/text_secondary"
-        android:textSize="15sp"
+        android:textSize="13.5sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAlarmTitle" />
@@ -47,24 +71,26 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnStopAlarm"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginBottom="60dp"
         android:backgroundTint="@color/alarm_red"
-        android:elevation="8dp"
+        android:letterSpacing="0.06"
         android:text="@string/stop_alarm"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="19sp"
         android:textStyle="bold"
-        app:cornerRadius="32dp"
+        app:cornerRadius="33dp"
+        app:elevation="8dp"
         app:icon="@drawable/boomclap_ic_sound_play_stop1"
         app:iconGravity="textStart"
         app:iconPadding="12dp"
-        app:iconSize="28dp"
+        app:iconSize="26dp"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

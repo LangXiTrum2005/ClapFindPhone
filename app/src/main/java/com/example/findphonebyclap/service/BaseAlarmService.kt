@@ -50,7 +50,7 @@ abstract class BaseAlarmService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (intent?.action == Constants.ACTION_STOP_SERVICE) {
+        if (intent?.action == Constants.ACTION_STOP_SERVICE || prefs.activeMode != getServiceMode()) {
             stopAlarm()
             stopSelf()
             return START_NOT_STICKY

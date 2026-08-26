@@ -17,7 +17,9 @@ class MotionDetectionService : BaseAlarmService() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val result = super.onStartCommand(intent, flags, startId)
-        armMotionDetectorWithDelay()
+        if (prefs.activeMode == FunctionMode.MODE_NOT_TOUCH_PHONE && intent?.action == null) {
+            armMotionDetectorWithDelay()
+        }
         return result
     }
 
@@ -25,12 +27,12 @@ class MotionDetectionService : BaseAlarmService() {
         motionDetector.stop()
         handler.removeCallbacksAndMessages(null)
 
-        // Give user 3 seconds to set the phone down before arming
+        // Give user 4 seconds to set the phone down before arming
         handler.postDelayed({
             motionDetector.start {
                 triggerAlarm(FunctionMode.MODE_NOT_TOUCH_PHONE)
             }
-        }, 3000L)
+        }, 4000L)
     }
 
     override fun onDestroy() {
